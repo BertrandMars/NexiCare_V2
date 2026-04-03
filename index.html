@@ -203,18 +203,20 @@ section { padding: 100px 80px; }
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10,20,40,.88);
+  background: rgba(10,20,40,.85);
+  backdrop-filter: blur(6px);
   z-index: 1000;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   opacity: 0;
-  transition: opacity .25s ease;
+  pointer-events: none;
+  transition: opacity .3s ease;
 }
 .modal-overlay.open {
-  display: flex;
   opacity: 1;
+  pointer-events: all;
 }
 .modal-box {
   background: #fff;
@@ -493,430 +495,13 @@ section { padding: 100px 80px; }
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 1200px) { .modules-grid { grid-template-columns: repeat(2, 1fr); } .timeline { grid-template-columns: repeat(2, 1fr); gap: 24px; } .timeline::before { display: none; } }
-@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .hero-left, .hero-right, section, .stats-strip, .cta-final { padding-left: 24px; padding-right: 24px; } .hero-right { padding-top: 0; padding-bottom: 40px; } .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 24px; } .stat-item { border-right: none; padding: 0; } .before-after-grid, .roi-grid { grid-template-columns: 1fr; } .ba-divider { padding: 24px 0; } .modules-grid { grid-template-columns: 1fr; } .timeline { grid-template-columns: 1fr; } .cta-row, .hero-cta-row, .founders-strip { flex-direction: column; align-items: flex-start; } .cta-final .cta-row { align-items: center; } .founder-sep { display: none; } .modal-grid-2 { grid-template-columns: 1fr; } .modal-kpis { flex-wrap: wrap; } }
+@media (max-width: 900px) {
+  .vide-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .impact-nums { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  .impact-nums > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.08); padding: 16px 0 !important; }
+  .impact-nums > div:last-child { border-bottom: none; }
+ .hero { grid-template-columns: 1fr; } .hero-left, .hero-right, section, .stats-strip, .cta-final { padding-left: 24px; padding-right: 24px; } .hero-right { padding-top: 0; padding-bottom: 40px; } .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 24px; } .stat-item { border-right: none; padding: 0; } .before-after-grid, .roi-grid { grid-template-columns: 1fr; } .ba-divider { padding: 24px 0; } .modules-grid { grid-template-columns: 1fr; } .timeline { grid-template-columns: 1fr; } .cta-row, .hero-cta-row, .founders-strip { flex-direction: column; align-items: flex-start; } .cta-final .cta-row { align-items: center; } .founder-sep { display: none; } .modal-grid-2 { grid-template-columns: 1fr; } .modal-kpis { flex-wrap: wrap; } }
 @media (max-width: 600px) { .hero-tagline { font-size: 36px; } .section-title { font-size: 32px; } .stats-strip { grid-template-columns: 1fr; } .btn-primary, .btn-secondary { width: 100%; } .hero-cta-row, .cta-row { width: 100%; } .cta-row { gap: 12px; } .pricing-tier { flex-direction: column; align-items: flex-start; gap: 8px; } .modal-box { border-radius: 16px; } .modal-body, .modal-header { padding: 20px; } }
-
-/* ── PRICING RESPONSIVE ──────────────────────────────────── */
-.pricing-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.pricing-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: linear-gradient(135deg, rgba(224,123,57,.18) 0%, rgba(14,124,123,.18) 100%);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 10px;
-  padding: 14px 20px;
-  margin-bottom: 20px;
-}
-.pricing-box { padding: 40px; }
-
-@media (max-width: 720px) {
-  .pricing-dual-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .pricing-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .pricing-banner > div[style*="width:1px"] {
-    display: none;
-  }
-  .pricing-box {
-    padding: 24px 20px;
-    border-radius: 14px;
-  }
-  .pricing-title {
-    font-size: 22px;
-  }
-}
-
-/* ── MOCKUPS MODAUX ─────────────────────────────────────────────── */
-.modal-mockup-full {
-  background: #0A1628;
-  border-radius: 0;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  font-size: 11px;
-}
-.mmf-topbar {
-  background: #060E1C;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  overflow-x: auto;
-}
-.mmf-tabs {
-  display: flex;
-  gap: 0;
-  flex: 1;
-}
-.mmf-tab {
-  padding: 6px 14px;
-  font-size: 10px;
-  color: rgba(255,255,255,.35);
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  font-weight: 500;
-}
-.mmf-tab.on {
-  color: #4ECDC4;
-  border-bottom-color: #4ECDC4;
-}
-.mmf-body {
-  padding: 14px 16px;
-  min-height: 200px;
-}
-/* Layout helpers inside modal mockups */
-.mmf-row { display: flex; gap: 10px; margin-bottom: 10px; }
-.mmf-col { flex: 1; }
-.mmf-card {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.09);
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-.mmf-card-title { font-size: 9px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
-.mmf-big { font-size: 22px; font-weight: 800; color: #fff; font-family: 'Playfair Display', serif; line-height: 1; }
-.mmf-sub  { font-size: 9px; color: rgba(255,255,255,.45); margin-top: 3px; }
-.mmf-green { color: #4ECDC4; }
-.mmf-orange { color: #F59E0B; }
-.mmf-red  { color: #FC8181; }
-.mmf-purple { color: #A78BFA; }
-.mmf-gold { color: #FBBF24; }
-/* Alert rows */
-.mmf-alert {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.04);
-  border-left: 2px solid;
-  border-radius: 0 5px 5px 0;
-  padding: 6px 10px;
-  margin-bottom: 5px;
-  font-size: 10px;
-  color: rgba(255,255,255,.8);
-}
-.mmf-alert.r { border-color: #FC8181; }
-.mmf-alert.y { border-color: #F59E0B; }
-.mmf-alert.g { border-color: #4ECDC4; }
-.mmf-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-.mmf-alert.r .mmf-dot { background: #FC8181; }
-.mmf-alert.y .mmf-dot { background: #F59E0B; }
-.mmf-alert.g .mmf-dot { background: #4ECDC4; }
-.mmf-badge {
-  font-size: 9px; padding: 2px 7px; border-radius: 100px; font-weight: 600; white-space: nowrap;
-}
-.mmf-badge-green  { background: rgba(78,205,196,.2); color: #4ECDC4; }
-.mmf-badge-orange { background: rgba(245,158,11,.2); color: #F59E0B; }
-.mmf-badge-blue   { background: rgba(99,102,241,.2); color: #A78BFA; }
-.mmf-badge-red    { background: rgba(252,129,129,.2); color: #FC8181; }
-/* Bar chart */
-.mmf-bars { display: flex; align-items: flex-end; gap: 3px; height: 44px; }
-.mmf-bar { flex:1; border-radius: 2px 2px 0 0; background: rgba(14,124,123,.4); }
-.mmf-bar.hi { background: #4ECDC4; }
-/* Progress bar */
-.mmf-progress-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-.mmf-progress-label { font-size: 9px; color: rgba(255,255,255,.5); width: 90px; flex-shrink: 0; }
-.mmf-progress-track { flex:1; height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; }
-.mmf-progress-fill { height: 100%; border-radius: 3px; }
-.mmf-progress-val { font-size: 9px; color: rgba(255,255,255,.6); width: 28px; text-align: right; flex-shrink: 0; }
-/* Kanban */
-.mmf-kanban { display: flex; gap: 8px; }
-.mmf-kanban-col { flex:1; }
-.mmf-kanban-head { font-size: 9px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; font-weight: 600; }
-.mmf-kanban-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 5px; padding: 7px 9px; margin-bottom: 5px; }
-.mmf-kanban-name { font-size: 10px; color: #fff; font-weight: 600; }
-.mmf-kanban-sub  { font-size: 9px; color: rgba(255,255,255,.45); margin-top: 2px; }
-/* Partner rows */
-.mmf-partner { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,.05); border-radius: 6px; padding: 7px 10px; margin-bottom: 5px; }
-.mmf-partner-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.mmf-partner-name { flex:1; font-size: 10px; color: rgba(255,255,255,.85); font-weight: 500; }
-.mmf-partner-flux { font-size: 9px; color: rgba(255,255,255,.4); }
-/* Chat */
-.mmf-chat { display: flex; flex-direction: column; gap: 5px; }
-.mmf-bubble { padding: 6px 10px; border-radius: 10px; font-size: 10px; line-height: 1.4; max-width: 80%; color: #fff; }
-.mmf-bubble.in  { background: rgba(255,255,255,.1); align-self: flex-start; border-bottom-left-radius: 3px; }
-.mmf-bubble.out { background: var(--teal); align-self: flex-end; border-bottom-right-radius: 3px; }
-/* HAS grid */
-.mmf-has { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.mmf-has-item { border-radius: 6px; padding: 7px 5px; text-align: center; font-size: 9px; font-weight: 700; }
-.mmf-has-item.ok  { background: rgba(78,205,196,.15); color: #4ECDC4; border: 1px solid rgba(78,205,196,.25); }
-.mmf-has-item.warn { background: rgba(245,158,11,.15); color: #F59E0B; border: 1px solid rgba(245,158,11,.25); }
-.mmf-has-lbl { font-size: 8px; margin-top: 2px; font-weight: 400; opacity: .8; }
-/* Gauges */
-.mmf-gauges { display: flex; gap: 10px; justify-content: center; }
-.mmf-gauge { text-align: center; }
-.mmf-gauge-ring { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; border: 3px solid; }
-.mmf-gauge-lbl { font-size: 9px; color: rgba(255,255,255,.45); margin-top: 4px; line-height: 1.2; }
-/* Calendar */
-.mmf-cal { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
-.mmf-cal-item { border-radius: 5px; padding: 6px 5px; font-size: 9px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07); }
-.mmf-cal-time { color: rgba(255,255,255,.4); margin-bottom: 2px; }
-.mmf-cal-name { color: rgba(255,255,255,.85); font-weight: 600; line-height: 1.2; }
-.mmf-cal-item.active { background: rgba(14,124,123,.2); border-color: rgba(14,124,123,.4); }
-/* Satisfaction stars */
-.mmf-stars { color: #FBBF24; font-size: 11px; letter-spacing: 1px; }
-/* Section separator in mockup */
-.mmf-sep { height: 1px; background: rgba(255,255,255,.06); margin: 10px 0; }
-/* Table */
-.mmf-table { width: 100%; border-collapse: collapse; }
-.mmf-table th { font-size: 9px; color: rgba(255,255,255,.35); text-align: left; padding: 4px 8px; border-bottom: 1px solid rgba(255,255,255,.06); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
-.mmf-table td { font-size: 10px; color: rgba(255,255,255,.75); padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,.04); }
-.mmf-table tr:last-child td { border-bottom: none; }
-
-
-/* ── PERFORMANCE SCROLL ─────────────────────────────────────────── */
-.hero::before,
-.cta-final::before {
-  will-change: auto;
-  transform: translateZ(0);
-}
-.module-card {
-  will-change: transform;
-}
-.stats-strip,
-.before-after,
-.modules,
-.journee,
-.roi,
-.coexist,
-.cta-final {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 600px;
-}
-/* Désactiver les animations coûteuses sur scroll rapide */
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .stat-num { transition: none !important; animation: none !important; }
-}
-
-
-/* ── MODALE LEAD GATE ─────────────────────────────────────────── */
-.lead-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,20,40,.88);
-  z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  transition: opacity .25s ease;
-}
-.lead-overlay.open {
-  display: flex;
-  opacity: 1;
-}
-.lead-box {
-  background: #fff;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 460px;
-  box-shadow: 0 40px 80px rgba(0,0,0,.35);
-  overflow: hidden;
-  transform: translateY(16px) scale(.97);
-  transition: transform .3s ease;
-}
-.lead-overlay.open .lead-box {
-  transform: translateY(0) scale(1);
-}
-.lead-header {
-  background: var(--navy-d);
-  padding: 28px 32px 24px;
-  position: relative;
-}
-.lead-header-eyebrow {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--orange);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-.lead-header-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-.lead-header-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,.5);
-}
-.lead-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.1);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  color: rgba(255,255,255,.6);
-  transition: background .2s;
-}
-.lead-close:hover { background: rgba(255,255,255,.2); }
-.lead-body {
-  padding: 28px 32px 32px;
-}
-.lead-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.lead-field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 12px;
-}
-.lead-field label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--dark);
-  letter-spacing: .02em;
-}
-.lead-field input {
-  padding: 11px 14px;
-  border: 1.5px solid #E5E7EB;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: var(--dark);
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-  background: #FAFAFA;
-}
-.lead-field input:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(14,124,123,.1);
-  background: #fff;
-}
-.lead-field input::placeholder { color: #9CA3AF; }
-.lead-submit {
-  width: 100%;
-  padding: 14px;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s, background .2s;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.lead-submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(224,123,57,.4);
-}
-.lead-submit:disabled {
-  background: #9CA3AF;
-  transform: none;
-  box-shadow: none;
-  cursor: not-allowed;
-}
-.lead-note {
-  text-align: center;
-  font-size: 11px;
-  color: #9CA3AF;
-  margin-top: 14px;
-  line-height: 1.5;
-}
-.lead-success {
-  display: none;
-  text-align: center;
-  padding: 32px;
-}
-.lead-success-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-.lead-success-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--dark);
-  margin-bottom: 8px;
-}
-.lead-success-sub {
-  font-size: 14px;
-  color: var(--grey);
-  line-height: 1.6;
-}
-
-@media (max-width: 500px) {
-  .lead-row { grid-template-columns: 1fr; }
-  .lead-body { padding: 20px; }
-  .lead-header { padding: 20px; }
-}
-
-
-/* ── FEATURES DANS LES CARDS ─────────────────────────────────── */
-.module-features {
-  list-style: none;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.module-features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--dark);
-  line-height: 1.5;
-}
-.module-features li::before {
-  content: '✓';
-  color: var(--teal);
-  font-weight: 700;
-  font-size: 12px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.module-impact {
-  font-size: 13px;
-  font-style: italic;
-  color: var(--grey);
-  border-left: 3px solid var(--orange);
-  padding: 8px 12px;
-  background: rgba(224,123,57,.06);
-  border-radius: 0 6px 6px 0;
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-.module-sub-title {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--grey);
-  margin-bottom: 8px;
-}
-
 </style>
 </head>
 <body>
@@ -931,7 +516,7 @@ section { padding: 100px 80px; }
     <h1 class="hero-tagline">Le cockpit qui manquait<br>à votre <em>organisation.</em></h1>
     <p class="hero-sub">Vos équipes ont des outils pour <strong style="color:#fff">faire</strong>. NexiCare leur donne enfin un outil pour <strong style="color:#fff">voir, décider et piloter</strong> — en temps réel, sans double saisie, sans friction.</p>
     <div class="hero-cta-row">
-      <a href="https://calendly.com/nexicare/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">Demander une démo</a>
+      <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">Demander une démo</a>
       <span class="hero-note">30 min · Sans engagement</span>
     </div>
   </div>
@@ -986,11 +571,121 @@ section { padding: 100px 80px; }
 <!-- ══ STATS ════════════════════════════════════════════ -->
 <div class="stats-strip">
   <div class="stat-item"><div class="stat-num">40<span>K+</span></div><div class="stat-label">Structures adressables en France</div></div>
-  <div class="stat-item"><div class="stat-num">8</div>
-    <div class="stat-label">Briques fonctionnelles interconnectées</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Modules fonctionnels intégrés</div></div>
   <div class="stat-item"><div class="stat-num">−<span>30</span>%</div><div class="stat-label">Délai traitement des admissions</div></div>
   <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">Couverture critères HAS intégrée</div></div>
 </div>
+
+<!-- ══ VIDE STRUCTUREL ═══════════════════════════════════ -->
+<section style="background:var(--navy-d);color:#fff;padding:100px 80px;">
+  <div class="section-eyebrow" style="color:var(--orange)">Le quotidien de vos équipes</div>
+  <h2 class="section-title" style="color:#fff;">40 000 structures.<br>Aucun cockpit pour piloter.</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,.55);">Les logiciels métiers existent — DPI, planification, facturation. Mais aucun outil ne relie ces silos pour permettre de voir, décider et piloter l'ensemble en temps réel.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:60px;align-items:start;" class="reveal vide-grid">
+
+    <!-- Gauche : les 4 problèmes -->
+    <div>
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.12em;margin-bottom:20px;">Ce que vivent vos équipes chaque jour</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+
+        <div style="display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.05);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:16px 18px;">
+          <span style="font-size:22px;flex-shrink:0;margin-top:2px;">🗂️</span>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;">20 à 40 icônes sur un bureau</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;">Chaque directeur jongle entre des dizaines d'applications sans vue d'ensemble. Aucun fil conducteur. Aucun cockpit pour voir ce qui compte vraiment.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.05);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:16px 18px;">
+          <span style="font-size:22px;flex-shrink:0;margin-top:2px;">🔄</span>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;">Des outils qui ne se parlent pas</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;">DPI, planning, facturation, ViaTrajectoire — chaque solution vit dans son silo. Zéro transversalité. La même information saisie 3, 4, 5 fois dans des outils différents.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.05);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:16px 18px;">
+          <span style="font-size:22px;flex-shrink:0;margin-top:2px;">💸</span>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;">Des outils payants, sous-utilisés</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;">Souvent 100 à 150 €/utilisateur/mois pour des solutions génériques que les équipes terrain n'adoptent pas — inadaptées à leur réalité métier, trop complexes, jamais vraiment maîtrisées.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.05);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;padding:16px 18px;">
+          <span style="font-size:22px;flex-shrink:0;margin-top:2px;">🔁</span>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;">Un turn-over accentué</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;">Des équipes qui peinent à s'approprier des outils perçus comme une charge supplémentaire — et une difficulté structurelle à stabiliser les compétences dans la durée.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Droite : les 5 conséquences + verbatim -->
+    <div>
+      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.12em;margin-bottom:20px;">Les conséquences concrètes</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:20px;">⏳</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;">Du temps massivement perdu à chercher l'information entre les outils, à compiler des données déjà existantes ailleurs</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:20px;">😓</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;">Des équipes fatiguées par la complexité des process, la multiplication des formations et l'absence d'outil fédérateur</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:20px;">🔍</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;">Des directions qui pilotent dans le rétroviseur — les données existent mais personne ne les voit toutes en même temps, ni en temps réel</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:20px;">📋</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;">Des nuits blanches avant chaque visite HAS, chaque dialogue de gestion ARS — à reconstituer des preuves qui auraient dû être tracées au fil de l'eau</span>
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <span style="font-size:20px;">📉</span>
+          <span style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;">Des admissions ralenties, des partenaires mal activés, des opportunités manquées faute de visibilité sur les flux entrants</span>
+        </div>
+
+      </div>
+
+      <!-- Verbatim -->
+      <div style="background:rgba(255,255,255,.05);border-left:4px solid var(--orange);border-radius:0 12px 12px 0;padding:20px 22px;">
+        <div style="font-size:15px;font-style:italic;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:10px;">"Le matin j'arrive, je compte les icônes sur mon écran. J'en ai 28. Pour faire mon travail, j'en utilise 12. Aucune ne parle aux autres. Et je passe deux heures à préparer des chiffres qui ont déjà un jour de retard."</div>
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.4);">— Directrice SAD, réseau de 35 structures</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ligne de chiffres impactants -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:60px;border-top:1px solid rgba(255,255,255,.08);padding-top:48px;" class="reveal impact-nums">
+    <div style="text-align:center;padding:0 24px;border-right:1px solid rgba(255,255,255,.08);">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--orange);line-height:1;">20-40</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.5;">icônes sur le bureau<br>d'un directeur le matin</div>
+    </div>
+    <div style="text-align:center;padding:0 24px;border-right:1px solid rgba(255,255,255,.08);">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--orange);line-height:1;">×3-5</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.5;">la même information<br>ressaisie dans des silos</div>
+    </div>
+    <div style="text-align:center;padding:0 24px;border-right:1px solid rgba(255,255,255,.08);">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--orange);line-height:1;">2h+</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.5;">perdues avant chaque<br>CODIR à compiler des chiffres</div>
+    </div>
+    <div style="text-align:center;padding:0 24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--orange);line-height:1;">0</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:8px;line-height:1.5;">outil de pilotage transversal<br>dédié au secteur</div>
+    </div>
+  </div>
+
+</section>
 
 <!-- ══ AVANT / APRÈS ════════════════════════════════════ -->
 <section class="before-after">
@@ -1033,8 +728,8 @@ section { padding: 100px 80px; }
 <!-- ══ MODULES ══════════════════════════════════════════ -->
 <section class="modules">
   <div class="section-eyebrow">L'architecture fonctionnelle</div>
-  <h2 class="section-title">8 briques fonctionnelles interconnectées.<br>Interopérables avec vos outils métiers.</h2>
-  <p class="section-sub">Chaque brique fonctionnelle alimente les autres automatiquement. Saisir une fois, voir partout. Compatible avec NetSoins, Titan, Ogust, ViaTrajectoire.</p>
+  <h2 class="section-title">8 modules. Un seul outil.<br>Tout connecté.</h2>
+  <p class="section-sub">Chaque module génère automatiquement les actions du suivant. Saisir une fois, voir partout.</p>
   <div class="modules-grid">
 
     <!-- 00 — Poste de commande -->
@@ -1056,21 +751,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Dès l'ouverture, en 10 secondes : ce qui est urgent, ce qui est en retard, ce qui avance. Votre journée est déjà organisée.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Backlog d'actions unifié avec filtres (type, urgence, responsable, date) — zéro information perdue</li>
-          <li>Alertes automatiques : dossiers inactifs, tâches en retard, points de blocage, échéances réglementaires</li>
-          <li>3 vues adaptées : Direction (pilotage macro), Terrain (actions du jour), Qualité (échéances HAS)</li>
-          <li>Indicateurs temps réel sur tous les flux : admissions, partenaires, familles, EI</li>
-          <li>Historique des actions, assignation en 1 clic, délégation simplifiée</li>
-          <li>Accès direct à tous les onglets depuis un seul écran central</li>
-        </ul>
+        <p class="module-desc">Votre porte d'entrée unique. En 2 secondes, vous savez ce qui est urgent, en retard, et ce qui avance.</p>
         <div class="module-kpi">
-          <div class="mkpi"><div class="mkpi-val" style="color:#1A7DC4">−50%</div><div class="mkpi-lbl">Temps détection blocages</div></div>
-          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">10 sec</div><div class="mkpi-lbl">Lecture situation du jour</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">−50%</div><div class="mkpi-lbl">Détection blocages</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">100%</div><div class="mkpi-lbl">Visibilité temps réel</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-00')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-00')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1091,22 +777,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Fini les dossiers perdus dans les mails ou les cahiers. Chaque demande entre dans NexiCare et ne sort qu'admise — ou refusée avec traçabilité.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Pipeline visuel Kanban : toutes les demandes de la réception à l'admission sur un seul écran</li>
-          <li>Import automatique ViaTrajectoire et formulaires web — zéro ressaisie, zéro perte de dossier</li>
-          <li>Matching automatique profil / capacité : GIR, pathologie, secteur géographique, chambres libres</li>
-          <li>Génération automatique du contrat PDF personnalisé + signature électronique intégrée</li>
-          <li>Alertes sur dossiers inactifs et relances automatiques programmées</li>
-          <li>Prévisions d'activité à 14 jours : anticipation des admissions probables et tensions capacitaires</li>
-          <li>Historique complet des échanges et actions sur chaque dossier, partagé entre collègues</li>
-        </ul>
+        <p class="module-desc">Du premier appel au contrat signé. Import ViaTrajectoire automatique, pipeline kanban, signature électronique en 1 clic.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">−30%</div><div class="mkpi-lbl">Délai de traitement</div></div>
           <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">+5 pts</div><div class="mkpi-lbl">Taux d'occupation</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-01')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-01')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1127,22 +803,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">80% de vos dossiers viennent de 20% de vos partenaires. NexiCare vous dit lesquels, automatise les relances et transforme votre réseau en actif piloté.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>CRM médico-social avec import automatique FINESS et Annuaire Santé — base constituée sans saisie manuelle</li>
-          <li>Cartographie dynamique des flux : visualisez qui vous envoie quoi, depuis où, et en quelle quantité</li>
-          <li>Roadmap partenariale structurée en 4 étapes : identifier → convaincre → contractualiser → fidéliser</li>
-          <li>Rappels automatiques de recontact selon les délais configurés (J+15, J+30, point trimestriel)</li>
-          <li>Bilan mensuel automatique généré et envoyé à chaque prescripteur actif</li>
-          <li>Identification précise de l'origine de 80 à 90% des demandes entrantes</li>
-          <li>Pilotage des partenaires à relancer, à convertir ou à consolider — vue claire et priorisée</li>
-        </ul>
+        <p class="module-desc">Votre réseau informel devient un actif piloté. Statut de chaque partenaire, relances auto, bilan mensuel généré pour chaque prescripteur.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">+25%</div><div class="mkpi-lbl">Partenaires actifs</div></div>
-          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">+20%</div><div class="mkpi-lbl">Volume orientations</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">90%</div><div class="mkpi-lbl">Dossiers tracés</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-02')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-02')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1164,26 +830,16 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Les familles rappellent 3 fois pour le même document ? Avec NexiCare, l'information est là, l'échange est tracé, la relance est automatique.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Journal des échanges unifié : appels, mails, rendez-vous — horodatés, partagés entre collègues</li>
-          <li>Fiche famille complète : identification du décideur, rôles, contacts référents, historique relationnel</li>
-          <li>Partage documentaire sécurisé + signature électronique des pièces administratives en 24h</li>
-          <li>Relances automatiques sur les documents en attente et les démarches non finalisées</li>
-          <li>Communication sortante ciblée : rappels, informations, messages groupés par profil</li>
-          <li>Collecte structurée d'avis et dispositif de soutien à la e-réputation de la structure</li>
-          <li>Suivi des sollicitations avec délai de traitement visible et alertes si dépassement</li>
-        </ul>
+        <p class="module-desc">Tous les échanges avec les proches en un endroit. Relances automatiques, signature électronique, satisfaction mesurée en continu.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">−35%</div><div class="mkpi-lbl">Appels répétitifs</div></div>
           <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">+20 pts</div><div class="mkpi-lbl">Satisfaction famille</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-03')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-03')">Découvrir ce module →</button>
       </div>
     </div>
 
-    <!-- 04 — Pilotage & Indicateurs -->
+    <!-- 04 — Pilotage -->
     <div class="module-card reveal" style="transition-delay:.2s">
       <div class="module-header" style="background:linear-gradient(135deg,#1A3C6E,#0E7C7B)">
         <div class="module-num">04</div>
@@ -1201,22 +857,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Vous passez 2h à préparer des chiffres avant chaque CODIR ? NexiCare les calcule en continu. Export PDF en 1 clic, données fraîches, zéro Excel.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Tableaux de bord temps réel : flux entrants, dossiers actifs, admissions, taux d'occupation</li>
-          <li>Mode TDB Performance ANAP/ARS : mapping automatique des indicateurs obligatoires, pré-calculés</li>
-          <li>Exports PDF propres et mis en forme pour les comités de direction et dialogues de gestion ARS</li>
-          <li>Alertes automatiques sur dossiers inactifs, tâches non traitées et points de blocage</li>
-          <li>Analyse dynamique organisationnelle : rythmes d'activité, tensions, ralentissements détectés en avance</li>
-          <li>Vue multi-sites pour les groupes : consolidation des indicateurs de plusieurs structures</li>
-          <li>Synthèses intelligentes d'activité, par dossier, par équipe — à la demande ou automatisées</li>
-        </ul>
+        <p class="module-desc">Les indicateurs se construisent automatiquement. TDB ANAP/ARS pré-calculé. Détection des blocages avant qu'ils deviennent des problèmes.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">−50%</div><div class="mkpi-lbl">Temps de reporting</div></div>
-          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">30 min</div><div class="mkpi-lbl">Campagne ANAP/ARS</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">Temps réel</div><div class="mkpi-lbl">Détection blocages</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-04')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-04')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1241,26 +887,16 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">La visite HAS n'est plus une course contre la montre. Les preuves se construisent automatiquement chaque jour, par l'usage normal de NexiCare.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Registre Plaintes &amp; Réclamations : workflow complet Réception→Qualification→Analyse→Correctif→Clôture (HAS 3.12.1/2/3)</li>
-          <li>Registre Événements Indésirables : déclaration mobile en 2 min depuis smartphone, saisie vocale possible (HAS 3.13.1/2/3)</li>
-          <li>Prévention Maltraitance : plan de prévention, traçabilité formations, signalement confidentiel sécurisé (HAS 3.11.1/2)</li>
-          <li>Protection données RGPD : registre des traitements intégré, journaux d'audit, gestion des droits (HAS 2.2.7)</li>
-          <li>Plan de Gestion de Crise : document vivant versionné, accessible hors connexion en mobilité (HAS 3.14.1/2)</li>
-          <li>100% des 18 critères impératifs HAS couverts nativement — aucun registre Excel à maintenir</li>
-          <li>Export dossier de preuves en 1 clic : registres complets, horodatés, organisés par critère HAS</li>
-        </ul>
+        <p class="module-desc">La conformité HAS se construit par l'usage quotidien. Déclaration EI depuis smartphone. Registres exportables en 1 clic.</p>
         <div class="module-kpi">
-          <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">100%</div><div class="mkpi-lbl">18 critères HAS</div></div>
-          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">−60%</div><div class="mkpi-lbl">Préparation visite</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">100%</div><div class="mkpi-lbl">Critères HAS couverts</div></div>
+          <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">−60%</div><div class="mkpi-lbl">Préparation évaluation</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-05')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-05')">Découvrir ce module →</button>
       </div>
     </div>
 
-    <!-- 06 — Vie Sociale & Animations -->
+    <!-- 06 — Vie Sociale -->
     <div class="module-card reveal">
       <div class="module-header" style="background:linear-gradient(135deg,#8B6914,#B8860B)">
         <div class="module-num">06</div>
@@ -1277,22 +913,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Finies les animations gérées dans la tête de l'animatrice. Planning partagé, présences tracées, familles informées automatiquement.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Planning d'animation partagé avec bibliothèque d'activités réutilisables et historisées</li>
-          <li>Recommandation d'activités personnalisées selon les profils, préférences et habitudes de chaque résident</li>
-          <li>Suivi de participation individuelle et collective : présent, absent, motif — saisi depuis smartphone</li>
-          <li>Communication automatique aux familles sur les animations, événements et activités à venir</li>
-          <li>Coordination des équipes : animateur, soignants, bénévoles sur un planning commun partagé</li>
-          <li>Indicateurs de vie sociale exportables pour les évaluations HAS et dialogues de gestion ANAP</li>
-          <li>Valorisation de la vie sociale auprès des familles et partenaires : image de qualité objectivée</li>
-        </ul>
+        <p class="module-desc">Planning d'animation partagé, suivi de participation individuelle, recommandations selon les profils. Indicateurs vie sociale pour les évaluations HAS.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">+20%</div><div class="mkpi-lbl">Taux de participation</div></div>
           <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">−30%</div><div class="mkpi-lbl">Temps coordination</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-06')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-06')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1322,22 +948,12 @@ section { padding: 100px 80px; }
         </div>
       </div>
       <div class="module-body">
-        <p class="module-impact">Les familles veulent de l'information, pas des appels sans réponse. Le portail leur donne accès à ce dont elles ont besoin — sans surcharger vos équipes.</p>
-        <div class="module-sub-title">Fonctionnalités clés</div>
-        <ul class="module-features">
-          <li>Messagerie sécurisée bidirectionnelle avec traçabilité complète côté structure et SLA configurables</li>
-          <li>Accès aux informations clés sur le proche — sans exposition de données cliniques sensibles</li>
-          <li>Partage et dépôt de documents sécurisé : contrats, avenants, pièces admin, avec signature électronique</li>
-          <li>Agenda et événements : animations, rendez-vous, visites — notifiés automatiquement par push ou mail</li>
-          <li>Cadrage opérationnel : règles de triage (qui lit, qui répond, quand), modèles de réponses standardisés</li>
-          <li>Transformation automatique message famille → tâche tracée dans le backlog de l'équipe</li>
-          <li>Questionnaires de satisfaction en continu : taux de réponse ×3 grâce à l'accès simplifié</li>
-        </ul>
+        <p class="module-desc">Espace externe sécurisé pour les proches. Messagerie encadrée, documents, agenda, satisfaction en continu. Les familles trouvent l'info seules.</p>
         <div class="module-kpi">
           <div class="mkpi"><div class="mkpi-val" style="color:var(--teal)">−35%</div><div class="mkpi-lbl">Appels répétitifs</div></div>
           <div class="mkpi"><div class="mkpi-val" style="color:var(--navy)">×3</div><div class="mkpi-lbl">Réponses satisfaction</div></div>
         </div>
-        <button class="btn-discover" onclick="openModal('modal-07')">Découvrir cette fonctionnalité →</button>
+        <button class="btn-discover" onclick="openModal('modal-07')">Découvrir ce module →</button>
       </div>
     </div>
 
@@ -1360,70 +976,28 @@ section { padding: 100px 80px; }
 
 <!-- ══ ROI / PRICING ════════════════════════════════════ -->
 <section class="roi">
-  <div class="section-eyebrow">Modèle de partenariat</div>
-  <h2 class="section-title">Une approche sur-mesure.<br>Construite avec vous.</h2>
-  <p class="section-sub">NexiCare ne propose pas de tarif catalogue pour ses partenaires. Chaque projet est unique — nous construisons ensemble la proposition adaptée à votre contexte, votre réseau et vos ambitions.</p>
-
+  <div class="section-eyebrow">Modèle économique</div>
+  <h2 class="section-title">Un abonnement simple.<br>Tous les modules. Tous les utilisateurs.</h2>
+  <p class="section-sub">Pas de facturation par utilisateur. Pas de surprise. Un tarif par établissement selon sa taille — et c'est tout.</p>
   <div class="roi-grid reveal">
     <div class="roi-cards">
-      <div class="roi-card">
-        <div class="roi-icon" style="background:#EFF6FF">🤝</div>
-        <div>
-          <div class="roi-card-title">Partenaire fondateur — Phase MVP</div>
-          <div class="roi-card-desc">Pendant la phase de co-construction (6 mois), NexiCare est mis à disposition gratuitement dans les structures pilotes. L'objectif est de construire l'outil avec le terrain — pas pour le terrain.</div>
-          <div class="roi-card-num" style="color:var(--teal);font-size:16px;">Accès gratuit pendant le MVP</div>
-        </div>
-      </div>
-      <div class="roi-card">
-        <div class="roi-icon" style="background:#F0FDF4">🏢</div>
-        <div>
-          <div class="roi-card-title">Solution Groupe & Réseau multi-sites</div>
-          <div class="roi-card-desc">Déploiement sur plusieurs structures, dashboard consolidé, tarif dégressif selon le volume. Accompagnement au déploiement inclus. Conditions négociées directement avec l'équipe fondatrice.</div>
-          <div class="roi-card-num" style="color:var(--navy);font-size:16px;">Tarification sur devis</div>
-        </div>
-      </div>
-      <div class="roi-card">
-        <div class="roi-icon" style="background:#FFF7ED">🔖</div>
-        <div>
-          <div class="roi-card-title">Solution en marque blanche</div>
-          <div class="roi-card-desc">Pour les éditeurs de logiciels, fédérations, intégrateurs ou réseaux souhaitant proposer NexiCare sous leur propre marque. Architecture technologique pensée pour l'intégration.</div>
-          <div class="roi-card-num" style="color:var(--orange);font-size:16px;">Partenariat sur mesure</div>
-        </div>
-      </div>
+      <div class="roi-card"><div class="roi-icon" style="background:#EFF6FF">💡</div><div><div class="roi-card-title">Sans limite d'utilisateurs</div><div class="roi-card-desc">Directeur, coordinatrice, animatrice, responsable qualité — tout le monde accède sans surcoût.</div><div class="roi-card-num" style="color:var(--teal)">vs 100–160 €/user/mois chez les CRM génériques</div></div></div>
+      <div class="roi-card"><div class="roi-icon" style="background:#F0FDF4">🔄</div><div><div class="roi-card-title">Coexiste avec vos outils actuels</div><div class="roi-card-desc">Famileo, Ageeval, Anissen… on connaît, on respecte, on sait coexister. NexiCare s'adapte à votre réalité.</div></div></div>
+      <div class="roi-card"><div class="roi-icon" style="background:#FFF7ED">🚀</div><div><div class="roi-card-title">Pionniers — offre co-construction</div><div class="roi-card-desc">Les 15 à 20 premières structures bénéficient d'un tarif bloqué 3 ans et d'une place dans la roadmap produit.</div><div class="roi-card-num" style="color:var(--orange)">Tarif Pack Complet bloqué</div></div></div>
     </div>
-
     <div class="pricing-box">
-      <div class="pricing-eyebrow">Partenariat fondateur</div>
-      <div class="pricing-title">Construisons NexiCare<br>ensemble.</div>
-      <div class="pricing-sub">Phase MVP · 6 mois · Accès gratuit pour les structures pilotes</div>
-
-      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
-        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 20px;">
-          <div style="font-size:13px;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:4px;">🎯 Phase de co-construction (MVP)</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">Mise à disposition gratuite · Retours terrain structurés · Place centrale dans la roadmap</div>
-        </div>
-        <div style="background:rgba(14,124,123,.2);border:1px solid rgba(14,124,123,.4);border-radius:10px;padding:16px 20px;">
-          <div style="font-size:13px;color:#4ECDC4;font-weight:600;margin-bottom:4px;">📈 Post-MVP — Conditions préférentielles</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">Tarif pionnier bloqué · Priorité sur les nouvelles fonctionnalités · Accompagnement dédié</div>
-        </div>
-        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 20px;">
-          <div style="font-size:13px;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:4px;">🏢 Groupes & Réseaux</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">Déploiement multi-sites · Dashboard consolidé · Tarification dégressive · Sur devis</div>
-        </div>
-        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 20px;">
-          <div style="font-size:13px;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:4px;">🔖 Marque blanche & Intégration</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">Éditeurs · Fédérations · Intégrateurs · Conditions négociées · Sur devis</div>
-        </div>
+      <div class="pricing-eyebrow">Tarification 2026</div>
+      <div class="pricing-title">Pack Complet<br>NexiCare</div>
+      <div class="pricing-sub">Tous les modules · Tous les utilisateurs · Sans limite</div>
+      <div class="pricing-tiers">
+        <div class="pricing-tier"><div class="tier-label">≤ 50 lits / personnes accompagnées</div><div class="tier-price">379 €<span> HT/mois</span></div></div>
+        <div class="pricing-tier highlighted"><div class="tier-label">51 à 80 lits — cœur de cible</div><div class="tier-price">419 €<span> HT/mois</span></div></div>
+        <div class="pricing-tier"><div class="tier-label">81 à 120 lits</div><div class="tier-price">449 €<span> HT/mois</span></div></div>
+        <div class="pricing-tier"><div class="tier-label">&gt; 120 lits · Groupe / multi-sites / HAD</div><div class="tier-price">479 €<span> HT/mois</span></div></div>
       </div>
-
-      <div class="pricing-note">
-        Toutes les fonctionnalités incluses dans chaque partenariat — <strong>sans option à la carte</strong>. Architecture HDS certifiée, RGPD by design, interopérable avec vos logiciels existants.
-        <br><br>
-        💬 Chaque projet est unique. <strong>Parlons-en directement.</strong>
-      </div>
+      <div class="pricing-note"><strong>Brique facturation/comptabilité</strong> en roadmap V2-V3. Setup one-shot à l'onboarding. <strong>Engagement annuel</strong> — résiliable à l'échéance.<br><br>💡 Vos outils actuels cumulés vous coûtent probablement <strong>500 à 900 €/mois</strong> pour moins de résultat.</div>
     </div>
   </div>
-</section>
 </section>
 
 <!-- ══ COEXIST ══════════════════════════════════════════ -->
@@ -1445,72 +1019,20 @@ section { padding: 100px 80px; }
 
 <!-- ══ CTA FINAL ════════════════════════════════════════ -->
 <section class="cta-final">
-  <div class="section-eyebrow">Devenez partenaire fondateur</div>
-  <h2 class="section-title">Construisons ensemble<br>l'outil qui manque au secteur.</h2>
-  <p class="section-sub" style="max-width:680px;">On ne cherche pas des clients. On cherche des partenaires qui ont envie de co-construire quelque chose d'utile — et qui savent que les meilleurs outils métiers sont toujours ceux qui naissent du terrain.</p>
-
-  <!-- Bloc co-construction -->
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 860px;
-    margin: 0 auto 48px;
-    position: relative;
-    z-index: 2;
-  ">
-    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px 20px;text-align:center;">
-      <div style="font-size:32px;margin-bottom:12px;">🏗️</div>
-      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;">Co-construire</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;">Vos retours terrain façonnent directement les fonctionnalités. Pas de ticket de support — une conversation directe avec les fondateurs.</div>
-    </div>
-    <div style="background:rgba(14,124,123,.2);border:1px solid rgba(14,124,123,.4);border-radius:14px;padding:24px 20px;text-align:center;">
-      <div style="font-size:32px;margin-bottom:12px;">🆓</div>
-      <div style="font-size:14px;font-weight:700;color:#4ECDC4;margin-bottom:8px;">Accès gratuit pendant le MVP</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;">6 mois de test en situation réelle, toutes fonctionnalités activées, sans engagement financier. On mise sur la valeur, pas sur la facturation.</div>
-    </div>
-    <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px 20px;text-align:center;">
-      <div style="font-size:32px;margin-bottom:12px;">🏆</div>
-      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px;">Bénéficier en premier</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;">Les partenaires fondateurs bénéficient d'un outil taillé pour leurs usages réels — et d'un tarif préférentiel bloqué pour la suite.</div>
-    </div>
-  </div>
-
-  <!-- Message ambitieux -->
-  <div style="
-    max-width: 640px;
-    margin: 0 auto 48px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 14px;
-    padding: 28px 32px;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-  ">
-    <div style="font-size:13px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:12px;">Notre ambition</div>
-    <p style="font-size:15px;color:rgba(255,255,255,.85);line-height:1.75;font-style:italic;">
-      "Le secteur médico-social mérite un outil de pilotage pensé par et pour ses professionnels — pas un CRM générique rebaptisé. On veut construire la référence du pilotage organisationnel médico-social en France. Avec les bons partenaires, dès le départ."
-    </p>
-    <div style="margin-top:16px;display:flex;align-items:center;gap:12px;">
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-family:'Playfair Display',serif;font-size:14px;">BM</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.4;">Bertrand Mars, fondateur & Olivier Lefebvre, conseiller stratégique<br>NexiCare — Stream Health</div>
-    </div>
-  </div>
-
+  <div class="section-eyebrow">Devenez pionnier</div>
+  <h2 class="section-title">Vous reconnaissez<br>votre quotidien ici ?</h2>
+  <p class="section-sub">On cherche 15 à 20 structures avec lesquelles construire NexiCare. Pas 50 clients — les bons partenaires.</p>
   <div class="cta-row">
-    <a href="https://calendly.com/nexicare/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">Discutons 30 minutes</a>
-    <button onclick="openLead()" class="btn-secondary" style="cursor:pointer;">Télécharger le teaser</button>
+    <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">Discutons 30 minutes</a>
+    <a href="https://docs.google.com/document/d/1mkjsjX6vQ9ETNagPN-Cbi4tidBQEvEo9/edit?usp=drive_link&ouid=114717049404400944409&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="btn-secondary">Télécharger le teaser</a>
   </div>
-
   <div class="founders-strip">
-    <div class="founder"><div class="founder-avatar" style="background:var(--teal)">BM</div><div><div class="founder-name">Bertrand Mars</div><div class="founder-role">Fondateur · 15 ans médico-social<br>Stratégie & Développement commercial</div></div></div>
+    <div class="founder"><div class="founder-avatar" style="background:var(--teal)">BM</div><div><div class="founder-name">Bertrand Mars</div><div class="founder-role">Co-fondateur · 15 ans médico-social<br>Stratégie & Développement commercial</div></div></div>
     <div class="founder-sep"></div>
-    <div class="founder"><div class="founder-avatar" style="background:var(--orange)">OL</div><div><div class="founder-name">Olivier Lefebvre</div><div class="founder-role">Conseiller stratégique · Directeur EHPAD<br>Intervenant ANAP · Président FédéCRT</div></div></div>
+    <div class="founder"><div class="founder-avatar" style="background:var(--orange)">OL</div><div><div class="founder-name">Olivier Lefebvre</div><div class="founder-role">Co-fondateur · Directeur EHPAD<br>Intervenant ANAP · Président FédéCRT</div></div></div>
     <div class="founder-sep"></div>
     <div style="text-align:center"><div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">Stream Health</div><div style="font-size:13px;color:rgba(255,255,255,.6)">bertrand@stræm.com</div></div>
   </div>
-</section>
 </section>
 
 <div class="confidential">NexiCare — Stream Health · Document confidentiel · Mars 2026 · Non contractuel</div>
@@ -1539,40 +1061,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-00')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab on">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab">✅ Qualité</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div class="mmf-card mmf-col"><div class="mmf-card-title">Dossiers actifs</div><div class="mmf-big mmf-green">18</div><div class="mmf-sub">↑ +3 cette semaine</div></div>
-          <div class="mmf-card mmf-col"><div class="mmf-card-title">Admissions</div><div class="mmf-big mmf-orange">3</div><div class="mmf-sub">En cours · 2 urgents</div></div>
-          <div class="mmf-card mmf-col"><div class="mmf-card-title">Alertes</div><div class="mmf-big mmf-red">2</div><div class="mmf-sub">Dont 1 critique</div></div>
-          <div class="mmf-card mmf-col" style="flex:2">
-            <div class="mmf-card-title">Admissions ce mois</div>
-            <div class="mmf-bars">
-              <div class="mmf-bar" style="height:35%"></div><div class="mmf-bar" style="height:50%"></div>
-              <div class="mmf-bar" style="height:65%"></div><div class="mmf-bar" style="height:45%"></div>
-              <div class="mmf-bar hi" style="height:85%"></div><div class="mmf-bar hi" style="height:95%"></div>
-              <div class="mmf-bar hi" style="height:75%"></div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Actions prioritaires du jour</div>
-        <div class="mmf-alert r"><div class="mmf-dot"></div>Mme Dupont — Dossier inactif depuis 5 jours · Prescription expirée<span class="mmf-badge mmf-badge-red" style="margin-left:auto">URGENT</span></div>
-        <div class="mmf-alert y"><div class="mmf-dot"></div>CH Saint-Antoine — Relance prescripteur J+15 · Dernier contact il y a 18 jours<span class="mmf-badge mmf-badge-orange" style="margin-left:auto">Relancer</span></div>
-        <div class="mmf-alert g"><div class="mmf-dot"></div>M. Bernard — Contrat signé électroniquement ✓ · Démarrage confirmé lundi<span class="mmf-badge mmf-badge-green" style="margin-left:auto">Clôturé</span></div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Avant, j'ouvrais 4 outils différents le matin pour savoir où j'en étais. Maintenant j'ouvre NexiCare et en 10 secondes je sais ce qui est urgent, ce qui est en retard, et ce que mon équipe a réussi hier."
         <div class="modal-verbatim-author">— Directrice SAD, 180 bénéficiaires</div>
@@ -1591,7 +1079,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Vous voulez voir le poste de commande en action ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -1617,50 +1105,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-01')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab on">📋 Parcours & Admissions</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab">✅ Qualité</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-kanban">
-          <div class="mmf-kanban-col">
-            <div class="mmf-kanban-head">📥 Demandes (4)</div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">Mme Leclerc</div><div class="mmf-kanban-sub">GIR 3 · Urgence · ViaTrajectoire</div><span class="mmf-badge mmf-badge-red">Urgent</span></div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">M. Renaud</div><div class="mmf-kanban-sub">GIR 4 · DOM · Mail entrant</div></div>
-            <div class="mmf-kanban-card" style="opacity:.6"><div class="mmf-kanban-name">Mme Tessier</div><div class="mmf-kanban-sub">GIR 2 · HAD · Formulaire web</div></div>
-          </div>
-          <div class="mmf-kanban-col">
-            <div class="mmf-kanban-head">🔍 Qualification (2)</div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">Mme Blanc</div><div class="mmf-kanban-sub">Matching OK · 2 places dispo</div><span class="mmf-badge mmf-badge-orange">À valider</span></div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">M. Petit</div><div class="mmf-kanban-sub">Profil incomplet · 1 doc manquant</div></div>
-          </div>
-          <div class="mmf-kanban-col">
-            <div class="mmf-kanban-head">📝 Contrat (1)</div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">Mme Fontaine</div><div class="mmf-kanban-sub">Contrat envoyé · Signature en attente</div><span class="mmf-badge mmf-badge-orange">J+2</span></div>
-          </div>
-          <div class="mmf-kanban-col">
-            <div class="mmf-kanban-head">✅ Admis (3)</div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">M. Bernard</div><div class="mmf-kanban-sub">Signé ✓ · Démarrage lundi</div><span class="mmf-badge mmf-badge-green">Actif</span></div>
-            <div class="mmf-kanban-card"><div class="mmf-kanban-name">Mme Simon</div><div class="mmf-kanban-sub">En cours depuis J+7</div></div>
-          </div>
-        </div>
-        <div class="mmf-sep"></div>
-        <div class="mmf-row" style="gap:16px">
-          <div style="font-size:10px;color:rgba(255,255,255,.5);">📊 Taux transformation : <span style="color:#4ECDC4;font-weight:700;">74%</span></div>
-          <div style="font-size:10px;color:rgba(255,255,255,.5);">⏱ Délai moyen : <span style="color:#F59E0B;font-weight:700;">8,4 jours</span></div>
-          <div style="font-size:10px;color:rgba(255,255,255,.5);">📋 Prévision 14j : <span style="color:#fff;font-weight:700;">+5 admissions</span></div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Les demandes arrivent par mail, téléphone, ViaTrajectoire… elles atterrissent partout et nulle part. On perd des dossiers. On ne sait pas où on en est."
         <div class="modal-verbatim-author">— Responsable de secteur SAD, 180 bénéficiaires</div>
@@ -1680,7 +1124,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Vous voulez voir le pipeline d'admissions en action ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -1706,40 +1150,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-02')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab on">🤝 Partenaires & Territoire</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab">✅ Qualité</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1.5">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Réseau territorial — 34 partenaires</div>
-            <div class="mmf-partner"><div class="mmf-partner-dot" style="background:#4ECDC4"></div><div class="mmf-partner-name">CH Saint-Antoine</div><span class="mmf-badge mmf-badge-green">Actif</span><div class="mmf-partner-flux">12 doss/mois</div></div>
-            <div class="mmf-partner"><div class="mmf-partner-dot" style="background:#F59E0B"></div><div class="mmf-partner-name">CCAS Paris 15e</div><span class="mmf-badge mmf-badge-orange">Relance J+3</span><div class="mmf-partner-flux">4 doss/mois</div></div>
-            <div class="mmf-partner"><div class="mmf-partner-dot" style="background:#A78BFA"></div><div class="mmf-partner-name">HAD Île-de-France</div><span class="mmf-badge mmf-badge-blue">Étape 2/4</span><div class="mmf-partner-flux">—</div></div>
-            <div class="mmf-partner"><div class="mmf-partner-dot" style="background:#FC8181"></div><div class="mmf-partner-name">SSIAD Val-de-Marne</div><span class="mmf-badge mmf-badge-red">Inactif 45j</span><div class="mmf-partner-flux">0 doss</div></div>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Origine des dossiers (mois)</div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">CH Saint-Antoine</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:68%;background:#4ECDC4"></div></div><div class="mmf-progress-val" style="color:#4ECDC4">68%</div></div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">CCAS Paris 15e</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:18%;background:#F59E0B"></div></div><div class="mmf-progress-val" style="color:#F59E0B">18%</div></div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">Familles directes</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:14%;background:#A78BFA"></div></div><div class="mmf-progress-val" style="color:#A78BFA">14%</div></div>
-            <div class="mmf-sep"></div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);margin-top:4px;">📧 Bilan mensuel auto envoyé · <span style="color:#4ECDC4">3 partenaires</span></div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);margin-top:3px;">🔔 Relances programmées · <span style="color:#F59E0B">2 cette semaine</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "On a des contacts dans tous les hôpitaux du territoire. Mais honnêtement, on ne sait pas vraiment qui nous envoie des dossiers, ni si on les a relancés récemment. C'est dans les têtes."
         <div class="modal-verbatim-author">— Directrice SAD, réseau de 35 partenaires</div>
@@ -1765,7 +1175,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Vous voulez voir la roadmap partenariale en action ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -1791,43 +1201,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-03')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab on">👨‍👩‍👧 Familles & Aidants</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab">✅ Qualité</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1.4">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Famille Dupont — M. Jean Dupont (fils référent)</div>
-            <div class="mmf-chat">
-              <div class="mmf-bubble in">"Bonjour, est-ce que ma mère a bien été installée ?"</div>
-              <div class="mmf-bubble out">Oui, tout s'est très bien passé. Elle participe aux activités dès ce soir ✓</div>
-              <div class="mmf-bubble in">"Pouvez-vous nous envoyer l'avenant au contrat ?"</div>
-              <div style="font-size:9px;color:rgba(255,255,255,.4);text-align:right;margin-top:2px;">⚙️ Document envoyé auto · Signature en attente · Relance J+2 programmée</div>
-            </div>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Vue d'ensemble familles</div>
-            <div class="mmf-row" style="gap:6px;margin-bottom:8px">
-              <div class="mmf-card mmf-col" style="text-align:center"><div class="mmf-big mmf-green" style="font-size:18px">24</div><div class="mmf-sub">Contacts ce mois</div></div>
-              <div class="mmf-card mmf-col" style="text-align:center"><div class="mmf-big mmf-orange" style="font-size:18px">3</div><div class="mmf-sub">Docs en attente</div></div>
-            </div>
-            <div style="font-size:9px;color:rgba(255,255,255,.35);margin-bottom:4px;">Satisfaction globale</div>
-            <div style="font-size:11px;" class="mmf-stars">★★★★☆</div>
-            <div style="font-size:10px;color:#FBBF24;font-weight:700;margin-top:2px;">4,2 / 5 <span style="color:rgba(255,255,255,.4);font-weight:400">(18 réponses)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Les familles appellent à toute heure pour savoir si on a reçu leur document, si le RDV est confirmé. On passe un temps fou à chercher dans nos mails. Et les coordinatrices ne savent pas toutes la même chose."
         <div class="modal-verbatim-author">— Coordinatrice EHPAD, 90 résidents</div>
@@ -1847,7 +1220,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Voir comment NexiCare transforme la relation famille ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -1873,42 +1246,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-04')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab on">📊 Pilotage & Indicateurs</div>
-          <div class="mmf-tab">✅ Qualité</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1">
-            <div class="mmf-gauges">
-              <div class="mmf-gauge"><div class="mmf-gauge-ring" style="border-color:#4ECDC4;color:#4ECDC4;background:rgba(78,205,196,.08)">87%</div><div class="mmf-gauge-lbl">Taux<br>occupation</div></div>
-              <div class="mmf-gauge"><div class="mmf-gauge-ring" style="border-color:#F59E0B;color:#F59E0B;background:rgba(245,158,11,.08)">8,4j</div><div class="mmf-gauge-lbl">Délai<br>admission</div></div>
-              <div class="mmf-gauge"><div class="mmf-gauge-ring" style="border-color:#A78BFA;color:#A78BFA;background:rgba(167,139,250,.08)">+12%</div><div class="mmf-gauge-lbl">Flux<br>partenaires</div></div>
-            </div>
-          </div>
-          <div style="flex:1.8">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">TDB Performance ANAP — Campagne 2026</div>
-            <table class="mmf-table">
-              <tr><th>Indicateur</th><th>Valeur</th><th>Statut</th></tr>
-              <tr><td>File active SAD</td><td style="color:#4ECDC4;font-weight:700;">142</td><td><span class="mmf-badge mmf-badge-green">✓ Calculé</span></td></tr>
-              <tr><td>Taux d'occupation</td><td style="color:#4ECDC4;font-weight:700;">87%</td><td><span class="mmf-badge mmf-badge-green">✓ Calculé</span></td></tr>
-              <tr><td>Délai prise en charge</td><td style="color:#F59E0B;font-weight:700;">8,4j</td><td><span class="mmf-badge mmf-badge-orange">À valider</span></td></tr>
-              <tr><td>Nb EI déclarés</td><td style="color:#4ECDC4;font-weight:700;">7</td><td><span class="mmf-badge mmf-badge-green">✓ Calculé</span></td></tr>
-            </table>
-            <div style="margin-top:6px;background:rgba(78,205,196,.1);border:1px solid rgba(78,205,196,.2);border-radius:5px;padding:5px 8px;font-size:9px;color:#4ECDC4;">📄 Export PDF ANAP prêt · Mis à jour il y a 2 heures</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Avant chaque réunion de direction, je passe deux heures à consolider des chiffres dans Excel. Et quand je les présente, ils ont déjà un jour de retard. Je pilote dans le rétroviseur."
         <div class="modal-verbatim-author">— Directeur EHPAD multi-sites, 3 établissements</div>
@@ -1928,7 +1265,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Voir le tableau de bord NexiCare en action ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -1954,46 +1291,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-05')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab on">✅ Qualité & HAS</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1.2">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">18 critères impératifs HAS — couverture temps réel</div>
-            <div class="mmf-has">
-              <div class="mmf-has-item ok">3.12.1<div class="mmf-has-lbl">Plaintes ✓</div></div>
-              <div class="mmf-has-item ok">3.12.2<div class="mmf-has-lbl">Réclamations ✓</div></div>
-              <div class="mmf-has-item ok">3.13.1<div class="mmf-has-lbl">EI ✓</div></div>
-              <div class="mmf-has-item ok">3.13.2<div class="mmf-has-lbl">Analyse EI ✓</div></div>
-              <div class="mmf-has-item ok">3.11.1<div class="mmf-has-lbl">Maltraité ✓</div></div>
-              <div class="mmf-has-item ok">2.2.7<div class="mmf-has-lbl">RGPD ✓</div></div>
-              <div class="mmf-has-item ok">3.14.1<div class="mmf-has-lbl">Crise ✓</div></div>
-              <div class="mmf-has-item ok">3.14.2<div class="mmf-has-lbl">Continuité ✓</div></div>
-              <div class="mmf-has-item ok">+10 ✓<div class="mmf-has-lbl">Tous couverts</div></div>
-            </div>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Registre EI — Ce trimestre</div>
-            <div class="mmf-alert g"><div class="mmf-dot"></div>EI #47 — Chute · Analysé · Plan d'action clôturé</div>
-            <div class="mmf-alert y"><div class="mmf-dot"></div>EI #48 — Médication · Analyse en cours J+3</div>
-            <div class="mmf-alert g"><div class="mmf-dot"></div>Registre plaintes · 2 traitées · 0 en retard</div>
-            <div class="mmf-sep"></div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);">📅 Prochaine évaluation HAS : <span style="color:#4ECDC4">Prête</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Quand l'évaluatrice HAS a appelé pour fixer la date, j'ai eu un coup au cœur. J'avais trois semaines pour reconstituer trois ans de preuves. Je n'ai pas dormi de la semaine précédant la visite."
         <div class="modal-verbatim-author">— Responsable qualité EHPAD, 110 lits</div>
@@ -2013,7 +1310,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Voir comment NexiCare couvre vos 18 critères HAS ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -2039,42 +1336,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-06')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab on">🎨 Vie Sociale</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1.8">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Planning — Semaine du 24 mars</div>
-            <div class="mmf-cal">
-              <div class="mmf-cal-item active"><div class="mmf-cal-time">Lun 09h</div><div class="mmf-cal-name">🎨 Atelier peinture</div></div>
-              <div class="mmf-cal-item"><div class="mmf-cal-time">Mar 14h</div><div class="mmf-cal-name">🎵 Musico-thérapie</div></div>
-              <div class="mmf-cal-item active"><div class="mmf-cal-time">Mer 10h</div><div class="mmf-cal-name">📚 Lecture partagée</div></div>
-              <div class="mmf-cal-item"><div class="mmf-cal-time">Jeu 15h</div><div class="mmf-cal-name">🌿 Jardinage</div></div>
-              <div class="mmf-cal-item active"><div class="mmf-cal-time">Ven 14h</div><div class="mmf-cal-name">🎭 Atelier mémoire</div></div>
-            </div>
-          </div>
-          <div style="flex:1">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Participation ce mois</div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">Atelier peinture</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:82%;background:#4ECDC4"></div></div><div class="mmf-progress-val" style="color:#4ECDC4">82%</div></div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">Musicothérapie</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:74%;background:#FBBF24"></div></div><div class="mmf-progress-val" style="color:#FBBF24">74%</div></div>
-            <div class="mmf-progress-row"><div class="mmf-progress-label">Jardinage</div><div class="mmf-progress-track"><div class="mmf-progress-fill" style="width:58%;background:#A78BFA"></div></div><div class="mmf-progress-val" style="color:#A78BFA">58%</div></div>
-            <div class="mmf-sep"></div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);">📊 Indicateurs HAS vie sociale : <span style="color:#4ECDC4">Prêts</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Je passe plus de temps à planifier et coordonner les activités qu'à les animer. Entre les tableaux Excel, les affiches à imprimer et les appels aux familles — c'est chronophage pour un résultat difficile à mesurer."
         <div class="modal-verbatim-author">— Animatrice EHPAD, 80 résidents</div>
@@ -2094,7 +1355,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Voir comment structurer la vie sociale avec NexiCare ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -2120,48 +1381,6 @@ section { padding: 100px 80px; }
       <button class="modal-close" onclick="closeModal('modal-07')">✕</button>
     </div>
     <div class="modal-body">
-
-    <div class="modal-mockup-full">
-      <div class="mmf-topbar">
-        <div class="mmf-tabs">
-          <div class="mmf-tab">⚡ Poste de commande</div>
-          <div class="mmf-tab">📋 Parcours</div>
-          <div class="mmf-tab">🤝 Partenaires</div>
-          <div class="mmf-tab">👨‍👩‍👧 Familles</div>
-          <div class="mmf-tab">📊 Pilotage</div>
-          <div class="mmf-tab on">🏠 Portail Famille</div>
-        </div>
-      </div>
-      <div class="mmf-body">
-        <div class="mmf-row">
-          <div style="flex:1">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Vue côté équipe — Portail Famille actif</div>
-            <div class="mmf-row" style="gap:6px;margin-bottom:8px">
-              <div class="mmf-card mmf-col" style="text-align:center"><div class="mmf-big mmf-green" style="font-size:18px">42</div><div class="mmf-sub">Familles actives</div></div>
-              <div class="mmf-card mmf-col" style="text-align:center"><div class="mmf-big mmf-orange" style="font-size:18px">5</div><div class="mmf-sub">Msgs sans réponse</div></div>
-            </div>
-            <div class="mmf-alert y"><div class="mmf-dot"></div>Famille Dupont · Avenant en attente de signature depuis J+3</div>
-            <div class="mmf-alert g"><div class="mmf-dot"></div>Famille Martin · Document MDPH déposé ✓ · Traité</div>
-          </div>
-          <div style="flex:1.2">
-            <div style="font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;font-weight:600;">Vue famille — Espace Dupont</div>
-            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px;">
-              <div class="mmf-chat">
-                <div class="mmf-bubble in">"Comment va ma mère cette semaine ?"</div>
-                <div class="mmf-bubble out">Elle va très bien, a participé à l'atelier peinture hier ✓</div>
-              </div>
-              <div class="mmf-sep"></div>
-              <div style="display:flex;gap:6px;justify-content:center;">
-                <div style="text-align:center;font-size:9px;color:rgba(255,255,255,.5);">📄 3 docs<br><span style="color:#4ECDC4">Signés</span></div>
-                <div style="text-align:center;font-size:9px;color:rgba(255,255,255,.5);">📅 2 évén.<br><span style="color:#F59E0B">Ce mois</span></div>
-                <div style="text-align:center;font-size:9px;color:rgba(255,255,255,.5);">⭐ Avis<br><span style="color:#FBBF24">4.8/5</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
       <div class="modal-verbatim">
         "Les familles veulent du lien, de la transparence, des réponses rapides. Et nous, on n'a pas le temps de rappeler tout le monde. Il faut un canal qui leur donne accès à ce dont ils ont besoin — sans multiplier nos sollicitations."
         <div class="modal-verbatim-author">— Directrice EHPAD, 95 résidents</div>
@@ -2181,7 +1400,7 @@ section { padding: 100px 80px; }
       </div>
       <div class="modal-cta">
         <div class="modal-cta-text">Voir le portail famille NexiCare en action ?</div>
-        <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
+        <a href="https://calendly.com/bertrand-xn-strm-xoa/30min" target="_blank" class="btn-modal-cta">Demander une démo →</a>
       </div>
     </div>
   </div>
@@ -2189,180 +1408,51 @@ section { padding: 100px 80px; }
 
 <!-- ══ SCRIPTS ══════════════════════════════════════════ -->
 <script>
-// ── Modales ──────────────────────────────────────────────────────
+// Modales
 function openModal(id) {
-  const m = document.getElementById(id);
-  m.style.display = 'flex';
-  requestAnimationFrame(() => m.classList.add('open'));
+  const modal = document.getElementById(id);
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeModal(id) {
-  const m = document.getElementById(id);
-  m.classList.remove('open');
-  setTimeout(() => { if (!m.classList.contains('open')) m.style.display = 'none'; }, 260);
+  const modal = document.getElementById(id);
+  modal.classList.remove('open');
   document.body.style.overflow = '';
 }
-function closeModalOutside(e, id) {
-  if (e.target === document.getElementById(id)) closeModal(id);
+function closeModalOutside(event, id) {
+  if (event.target === document.getElementById(id)) closeModal(id);
 }
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape')
-    document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
 });
 
-// ── Scroll reveal — throttlé sur requestAnimationFrame ───────────
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      const delay = parseInt(entry.target.dataset.delay) || 0;
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      revealObs.unobserve(entry.target);
+      setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Stats fade-in ─────────────────────────────────────────────────
+// Stats counter
+const counters = document.querySelectorAll('.stat-num');
 const statObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-      statObs.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
   });
-}, { threshold: 0.4 });
-document.querySelectorAll('.stat-num').forEach(el => {
-  el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;';
+}, { threshold: 0.5 });
+counters.forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
   statObs.observe(el);
-});
-
-// ── Init : toutes les modales en display:none ─────────────────────
-document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
-</script>
-
-<!-- ══ MODALE LEAD GATE — Télécharger le teaser ══════════════════ -->
-<div id="lead-modal" class="lead-overlay" onclick="if(event.target===this)closeLead()">
-  <div class="lead-box">
-    <div class="lead-header">
-      <div class="lead-header-eyebrow">Document confidentiel</div>
-      <div class="lead-header-title">Télécharger le teaser NexiCare</div>
-      <div class="lead-header-sub">Laissez vos coordonnées — le teaser s'ouvre immédiatement.</div>
-      <button class="lead-close" onclick="closeLead()">✕</button>
-    </div>
-
-    <div class="lead-body">
-      <form id="lead-form"
-            action="https://formspree.io/f/mreogwzl"
-            method="POST"
-            onsubmit="handleLeadSubmit(event)">
-
-        <input type="hidden" name="_subject" value="NexiCare — Nouveau téléchargement teaser">
-        <input type="hidden" name="_replyto" id="hidden-email">
-
-        <div class="lead-row">
-          <div class="lead-field">
-            <label for="lead-prenom">Prénom *</label>
-            <input type="text" id="lead-prenom" name="prenom" placeholder="Sophie" required>
-          </div>
-          <div class="lead-field">
-            <label for="lead-nom">Nom *</label>
-            <input type="text" id="lead-nom" name="nom" placeholder="Dupont" required>
-          </div>
-        </div>
-
-        <div class="lead-field">
-          <label for="lead-email">Email professionnel *</label>
-          <input type="email" id="lead-email" name="email" placeholder="sophie.dupont@structure.fr"
-                 required oninput="document.getElementById('hidden-email').value=this.value">
-        </div>
-
-        <div class="lead-field">
-          <label for="lead-tel">Téléphone</label>
-          <input type="tel" id="lead-tel" name="telephone" placeholder="06 12 34 56 78">
-        </div>
-
-        <div class="lead-field">
-          <label for="lead-structure">Structure (optionnel)</label>
-          <input type="text" id="lead-structure" name="structure" placeholder="Nom de votre établissement">
-        </div>
-
-        <button type="submit" class="lead-submit" id="lead-btn">
-          <span>📄</span> Télécharger le teaser
-        </button>
-
-        <p class="lead-note">
-          🔒 Vos données sont confidentielles et ne seront jamais partagées.<br>
-          En soumettant, vous acceptez d'être recontacté par l'équipe NexiCare.
-        </p>
-      </form>
-
-      <div class="lead-success" id="lead-success">
-        <div class="lead-success-icon">🎉</div>
-        <div class="lead-success-title">Merci, le teaser s'ouvre !</div>
-        <div class="lead-success-sub">
-          Un membre de l'équipe NexiCare prendra contact avec vous prochainement.<br><br>
-          <a href="https://calendly.com/nexicare/30min" target="_blank"
-             style="color:var(--teal);font-weight:600;text-decoration:none;">
-            → Prendre directement RDV en 30 minutes
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script>
-// ── Lead Gate ─────────────────────────────────────────────────
-const TEASER_URL = "https://docs.google.com/document/d/1mkjsjX6vQ9ETNagPN-Cbi4tidBQEvEo9/export?format=docx";
-
-function openLead() {
-  const m = document.getElementById('lead-modal');
-  m.style.display = 'flex';
-  requestAnimationFrame(() => m.classList.add('open'));
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLead() {
-  const m = document.getElementById('lead-modal');
-  m.classList.remove('open');
-  setTimeout(() => { if (!m.classList.contains('open')) m.style.display = 'none'; }, 260);
-  document.body.style.overflow = '';
-}
-
-async function handleLeadSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById('lead-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span>⏳</span> Envoi en cours…';
-
-  const form = document.getElementById('lead-form');
-  const data = new FormData(form);
-
-  try {
-    await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
-  } catch(err) {}
-
-  // Ouvrir le teaser dans tous les cas
-  window.open(TEASER_URL, '_blank');
-
-  // Afficher le message de succès
-  form.style.display = 'none';
-  document.getElementById('lead-success').style.display = 'block';
-
-  // Fermer la modale après 4 secondes
-  setTimeout(closeLead, 4000);
-}
-
-// Init lead modal
-document.addEventListener('DOMContentLoaded', function() {
-  const lm = document.getElementById('lead-modal');
-  if (lm) lm.style.display = 'none';
 });
 </script>
 </body>
